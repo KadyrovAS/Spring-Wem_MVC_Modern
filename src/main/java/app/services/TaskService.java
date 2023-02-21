@@ -11,9 +11,9 @@ public class TaskService {
     private static List<Task>store = new ArrayList<>();
     static {
         store.add(new Task(1L, "Создание обращения", new Date(), PriorityType.CRITICAL, Type.TASK));
-        store.add(new Task(1L, "Исправить ошибку подключения", new Date(), PriorityType.BLOCKER, Type.BUG));
-        store.add(new Task(1L, "Создать метод для парсинга строки", new Date(), PriorityType.MINOR, Type.TASK));
-        store.add(new Task(1L, "Создать сущность событие", new Date(), PriorityType.MAJOR, Type.TASK));
+        store.add(new Task(2L, "Исправить ошибку подключения", new Date(), PriorityType.BLOCKER, Type.BUG));
+        store.add(new Task(3L, "Создать метод для парсинга строки", new Date(), PriorityType.MINOR, Type.TASK));
+        store.add(new Task(4L, "Создать сущность событие", new Date(), PriorityType.MAJOR, Type.TASK));
     }
 
     public void create(Task task){
@@ -37,5 +37,9 @@ public class TaskService {
     public void delete(Long id){
         Task task = get(id);
         store.remove(task);
+    }
+
+    public int size(){
+        return store.size();
     }
 }
