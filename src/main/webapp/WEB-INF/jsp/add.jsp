@@ -10,7 +10,7 @@
 </head>
 <body>
 <div class = "container">
-    <form action="/task/add" method="post">
+    <form action="/Spring_web_MVC_modern_war/task/add" method="post">
         <div class="form-group">
             <label for="name">Name</label>
             <input type="text" class="form-control" id="name" name = "name">
@@ -21,11 +21,19 @@
         </div>
         <div class="form-group">
             <label for="priority">Priority</label>
-            <input type="text" class="form-control" id="priority" name = "priority">
+            <select class="form-control" id="priority" name = "priority">
+                <option value="MINOR">MINOR</option>
+                <option value="MAJOR">MAJOR</option>
+                <option value="CRITICAL">CRITICAL</option>
+                <option value="BLOCKER">BLOCKER</option>
+            </select>
         </div>
         <div class="form-group">
             <label for="type">Type</label>
-            <input type="text" class="form-control" id="type" name = "type">
+            <select class="form-control" id="type" name = "type">
+                <option value="TASK">TASK</option>
+                <option value="BUG">BUG</option>
+            </select>
         </div>
         <input type="submit" class="btn btn-primary" value="Сохранить">
     </form>

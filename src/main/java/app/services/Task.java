@@ -59,4 +59,15 @@ public class Task {
     public void setType(Type type) {
         this.type = type;
     }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", created=" + created +
+                ", priority=" + priority +
+                ", type=" + type +
+                '}';
+    }
 }
