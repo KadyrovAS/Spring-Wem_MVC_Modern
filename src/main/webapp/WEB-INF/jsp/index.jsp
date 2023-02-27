@@ -31,8 +31,8 @@
                     <td><c:out value="${item.created}"/></td>
                     <td><c:out value="${item.priority}"/></td>
                     <td><c:out value="${item.type}"/></td>
-                    <td><a href="/task/edit/${item.id}">Редактировать</a></td>
-                    <td><a href="/task/delete?id=${item.id}">Удалить</a></td>
+                    <td><a href="/Spring_web_MVC_modern_war/task/edit/${item.id}">Редактировать</a></td>
+                    <td><a href="/Spring_web_MVC_modern_war/task/delete?id=${item.id}">Удалить</a></td>
                 </tr>
             </c:forEach>
         </tbody>

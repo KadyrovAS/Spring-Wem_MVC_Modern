@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.logging.Logger;
@@ -33,6 +34,12 @@ public class TaskController {
     public RedirectView save(@ModelAttribute Task task){
         task.setId((long) service.size() + 1);
         service.create(task);
+        return new RedirectView("/Spring_web_MVC_modern_war/index");
+    }
+
+    @GetMapping("/task/delete")
+    public RedirectView delete(@RequestParam("id") Long id){
+        service.delete(id);
         return new RedirectView("/Spring_web_MVC_modern_war/index");
     }
 }
