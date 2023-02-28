@@ -1,3 +1,4 @@
+<%@ page import="app.services.PriorityType" %>
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <html>
@@ -9,22 +10,27 @@
           rel="stylesheet"/>
 </head>
 <body>
+
 <div class = "container">
-    <form action="/Spring_web_MVC_modern_war/task/add" method="post">
+    <form action="/Spring_web_MVC_modern_war/task/edit" method="post" >
+        <div class="form-group" hidden>
+            <input type="text" value="${task.id}" class="form-control" id="id" name="id" >
+        </div>
         <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" name = "name">
+            <input type="text" value="${task.name}" class="form-control" id="name" name = "name">
         </div>
         <div class="form-group">
             <label for="created">Created</label>
-            <input type="text" class="form-control" id="created" name = "created">
+            <input type="text" value="${task.created}" class="form-control" id="created" name = "created">
         </div>
+
         <div class="form-group">
             <label for="priority">Priority</label>
             <select class="form-control" id="priority" name = "priority">
                 <option value="MINOR">MINOR</option>
                 <option value="MAJOR">MAJOR</option>
-                <option value="CRITICAL">CRITICAL</option>
+                <option value="CRITICAL" selected="selected">CRITICAL</option>
                 <option value="BLOCKER">BLOCKER</option>
             </select>
         </div>

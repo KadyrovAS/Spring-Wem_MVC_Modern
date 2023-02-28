@@ -2,13 +2,11 @@ package app.controller;
 
 import app.services.Task;
 import app.services.TaskService;
+import org.apache.commons.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.logging.Logger;
@@ -41,5 +39,17 @@ public class TaskController {
     public RedirectView delete(@RequestParam("id") Long id){
         service.delete(id);
         return new RedirectView("/Spring_web_MVC_modern_war/index");
+    }
+
+    @GetMapping(value = "/task/edit/{id}")
+    public String edit(Model model, @PathVariable("id") Long id){
+        Task task = service.get(id);
+        model.addAttribute("task", task);
+        return "edit";
+    }
+
+    @GetMapping("/hello")
+    public String hello(){
+        return "hello";
     }
 }
