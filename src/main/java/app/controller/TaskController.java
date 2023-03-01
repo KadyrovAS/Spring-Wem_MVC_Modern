@@ -48,8 +48,4 @@ public class TaskController {
         return "edit";
     }
 
-    @GetMapping("/hello")
-    public String hello(){
-        return "hello";
-    }
 }
