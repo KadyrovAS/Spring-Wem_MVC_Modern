@@ -7,20 +7,18 @@ public class JdbcTest {
     static final String name = "postgres";
     static final String password = "kas3722058";
 
-    public static void createTables() throws ClassNotFoundException {
-        try{
-            try(Connection connection = DriverManager.getConnection(url, name, password)){
+    public static void createTables(Connection connection) throws SQLException {
                 Statement statement = connection.createStatement();
 
-                String sqlLine = "drop table if exists jdbc_test.person";
+                String sqlLine = "drop table if exists person";
                 statement.execute(sqlLine);
 
-                sqlLine = "drop sequence if exists jdbc_test.personseq ";
+                sqlLine = "drop sequence if exists personseq ";
                 statement.execute(sqlLine);
 
-                sqlLine = "CREATE SEQUENCE if not exists jdbc_test.personseq " +
+                sqlLine = "CREATE SEQUENCE if not exists personseq " +
                         "    INCREMENT 1 " +
-                        "    START 10 " +
+                        "    START 1 " +
                         "    MINVALUE 1 " +
                         "    MAXVALUE 9223372036854775807 " +
                         "    CACHE 1;";
@@ -37,19 +35,19 @@ public class JdbcTest {
                     "sex integer" +
                         ");";
                 statement.execute(sqlLine);
-            }
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
+
+                sqlLine = "insert into Person values " +
+                        "(1, 'Вася', 100, '2006-05-28', 1)";
+                statement.executeUpdate(sqlLine);
 
     }
 
     public static void main(String[] args) throws ClassNotFoundException {
         Class.forName("org.postgresql.Driver");
 
-        createTables();
         try{
             try(Connection connection = DriverManager.getConnection(url, name, password)){
+                createTables(connection);
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery("select * from Person");
                 while (resultSet.next()){
