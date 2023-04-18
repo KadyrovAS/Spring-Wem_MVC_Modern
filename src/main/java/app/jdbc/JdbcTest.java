@@ -36,9 +36,11 @@ public class JdbcTest {
                         ");";
                 statement.execute(sqlLine);
 
-                sqlLine = "insert into Person values " +
-                        "(1, 'Вася', 100, '2006-05-28', 1)";
-                statement.executeUpdate(sqlLine);
+                for (int i = 1; i <= 10; i ++) {
+                    sqlLine = "insert into Person values " +
+                            "(" + i + ", 'Вася" + i + "', 100, '2006-05-28', 1)";
+                    statement.executeUpdate(sqlLine);
+                }
 
     }
 
