@@ -3,13 +3,12 @@ package app.controller;
 import app.services.Task;
 import app.services.TaskService;
 import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
-
-import java.util.logging.Logger;
 
 
 @Controller
@@ -48,4 +47,11 @@ public class TaskController {
         return "edit";
     }
 
+    @PostMapping("/task/edit")
+    public RedirectView taskEdit(@ModelAttribute Task task){
+        Log log = LogFactory.getLog(Class.class);
+        log.info("ERROR !!!!");
+        service.update(task);
+        return new RedirectView("/Spring_web_MVC_modern_war/index");
+    }
 }

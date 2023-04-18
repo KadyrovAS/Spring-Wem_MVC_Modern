@@ -12,7 +12,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 @ComponentScan("app")
 @EnableWebMvc
-public class ServletConfigContext implements WebMvcConfigurer {
+public class    ServletConfigContext implements WebMvcConfigurer {
 //    @Override
 //    public void configureViewResolvers(ViewResolverRegistry registry) {
 //        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
