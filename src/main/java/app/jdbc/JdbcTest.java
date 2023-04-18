@@ -39,9 +39,30 @@ public class JdbcTest {
                 for (int i = 1; i <= 10; i ++) {
                     sqlLine = "insert into Person values " +
                             "(" + i + ", 'Вася" + i + "', 100, '2006-05-28', 1)";
-                    statement.executeUpdate(sqlLine);
-                }
+//                    statement.executeUpdate(sqlLine);
 
+                    statement.addBatch(sqlLine);
+                }
+                statement.executeBatch();
+
+    }
+
+    public static void print(ResultSet resultSet) throws SQLException {
+        while (resultSet.next()){
+            System.out.println(resultSet.getInt("id") + " " +
+                    resultSet.getString("name"));
+        }
+
+    }
+
+    public static void prepareQuery(Connection connection) throws SQLException {
+        System.out.println("*".repeat(40));
+        System.out.println("PreparedStatement:");
+        String sqlLine = "Select * from Person where id = ?";
+        PreparedStatement statement = connection.prepareStatement(sqlLine);
+        statement.setInt(1, 5);
+        ResultSet resultSet = statement.executeQuery();
+        print(resultSet);
     }
 
     public static void main(String[] args) throws ClassNotFoundException {
@@ -52,11 +73,15 @@ public class JdbcTest {
                 createTables(connection);
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery("select * from Person");
-                while (resultSet.next()){
-                    System.out.println(resultSet.getInt("id") + " " +
-                            resultSet.getString("name"));
-                }
+                print(resultSet);
+
+                resultSet = statement.executeQuery("select count(*) from Person");
+                resultSet.next();
+
+                System.out.println("count = " + resultSet.getInt(1));
+
                 statement.close();
+                prepareQuery(connection);
             }
         }catch (SQLException e){
             e.printStackTrace();
